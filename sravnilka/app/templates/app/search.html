@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    {% if search %}
+        {% for item in search %}
+            <img src="{{item.img_link}}" alt="">
+            <h2>{{item.shop}} | {{item.title}} | {{item.author}} | {{item.price}} Руб.</h2>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <h1>Ничего не найдено</h1>
+    {% endif %}
+</body>
+</html>
