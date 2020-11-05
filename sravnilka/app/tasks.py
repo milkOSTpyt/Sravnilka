@@ -1,4 +1,5 @@
 from django_q.tasks import schedule
+from django.db import IntegrityError
 import asyncio
 import aiohttp
 from lxml import html
@@ -19,6 +20,8 @@ async def cor(url, sem, dictt):
         img = dom_tree.xpath(dictt['img'])
         price = dom_tree.xpath(dictt['price'])
         for t, a, l, i, p in zip(title, author, link, img, price):
+            if p.text == 'Уведомить о появлении':
+                continue
             p = float(str('.'.join(re.findall('(\d+)', p.text))))
             if 'http' not in l:
                 l = of_link + l
@@ -26,7 +29,7 @@ async def cor(url, sem, dictt):
                 i = of_link + i
             try:
                 Books(shop=of_link, title=t.text, author=a.text, link=l, img_link=i, price=p).save()
-            except Exception:
+            except IntegrityError:
                 continue
 
 

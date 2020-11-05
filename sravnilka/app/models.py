@@ -10,5 +10,6 @@ class Books(models.Model):
     price = models.FloatField('Цена', null=True, blank=True)
 
     class Meta:
-        verbose_name = "Книга"
-        verbose_name_plural = "Книги"
+        verbose_name = 'Книга'
+        verbose_name_plural = 'Книги'
+        ordering = ['price']
