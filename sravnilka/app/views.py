@@ -13,7 +13,6 @@ def index(request):
             'title' : search,
         }
         return render(request, 'app/search.html', context)
-
     else:
         return render(request, 'app/index.html')
         

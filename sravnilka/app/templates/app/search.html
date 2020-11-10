@@ -11,7 +11,7 @@
     {% if search %}
         {% for item in search %}
             <img src="{{item.img_link}}" alt="">
-            <h2>{{item.shop}} | {{item.title}} | {{item.author}} | {{item.price}} Руб.</h2>
+            <h2>{{item.shop}} | <a target="_blank" href="{{item.link}} ">{{item.title}}</a> | {{item.author}} | {{item.price}} Руб.</h2>
             <hr>
         {% endfor %}
     {% else %}
