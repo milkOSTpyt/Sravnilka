@@ -8,6 +8,28 @@ import re
 
 list_503 = []
 
+def cor2(html_code, dictt):
+    dom_tree = html.fromstring(html_code)
+    of_link = dictt['of_link']
+    title = dom_tree.xpath(dictt['title'])
+    author = dom_tree.xpath(dictt['author'])
+    link = dom_tree.xpath(dictt['link'])
+    img = dom_tree.xpath(dictt['img'])
+    price = dom_tree.xpath(dictt['price'])
+    for t, a, l, i, p in zip(title, author, link, img, price):
+        if p.text == 'Уведомить о появлении':
+            continue
+        if 'http' not in l:
+            l = of_link + l
+        if 'http' not in i:
+            i = of_link + i
+        try:
+            p = float(str('.'.join(re.findall('(\d+)', p.text))))
+            Books.objects.get_or_create(shop=of_link, title=t.text, 
+                                    author=a.text, link=l, img_link=i, price=p)
+        except ValueError:
+            continue
+
 
 async def cor(url, sem, dictt):
     async with sem:
@@ -17,28 +39,7 @@ async def cor(url, sem, dictt):
                 if resp.status == 503:
                     list_503.append(url)
                 html_code = await resp.text()
-            dom_tree = html.fromstring(html_code)
-            of_link = dictt['of_link']
-            title = dom_tree.xpath(dictt['title'])
-            author = dom_tree.xpath(dictt['author'])
-            link = dom_tree.xpath(dictt['link'])
-            img = dom_tree.xpath(dictt['img'])
-            price = dom_tree.xpath(dictt['price'])
-            for t, a, l, i, p in zip(title, author, link, img, price):
-                if p.text == 'Уведомить о появлении':
-                    continue
-                if 'http' not in l:
-                    l = of_link + l
-                if 'http' not in i:
-                    i = of_link + i
-                try:
-                    p = float(str('.'.join(re.findall('(\d+)', p.text))))
-                    Books(shop=of_link, title=t.text, author=a.text, link=l, 
-                        img_link=i, price=p).save()
-                except IntegrityError:
-                    continue
-                except ValueError:
-                    continue
+                cor2(html_code, dictt)
 
 
 async def main(urll, dictt):
