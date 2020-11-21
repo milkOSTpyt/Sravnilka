@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+{{ title }}
+{% endblock %}
+
 {% block header %}
 <div class="grid_element header">
   <a href="{% url 'home' %}"><img src="{% static 'logoo.png' %}" alt=""></a>
