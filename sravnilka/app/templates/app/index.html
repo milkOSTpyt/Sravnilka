@@ -1,22 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
-    <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
-    
-    <title>QWE</title>
-</head>
-<body>
-    <h1>QWE</h1>
-    <hr>
-    <form action="{% url 'home' %}", method="GET">
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<div class="grid_element header">
+    <img src="static/logoo.png" alt="">
+</div>
+{% endblock header %}
+
+{% block content %}
+<div class="grid_element search">
+    <form action="{% url 'search' %}", method="GET">
         <input class="serchX" type="text" placeholder="Введите название книги" name="q" value="">
         <button type="submit" id="serchXbtn">Найти</button>
     </form>
-</body>
-</html>
+</div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style_project.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="grid">
+            {% block header %}
+
+            {% endblock header %}
+
+
+            {% block content %}
+
+            {% endblock content %}
+
+
+            {% block pagination %}
+
+            {% endblock pagination %}
+        {% include 'inc/footer.html' %}
+    </div>
+    <script src="https://use.fontawesome.com/c61d059362.js"></script>
+</body>
+</html>

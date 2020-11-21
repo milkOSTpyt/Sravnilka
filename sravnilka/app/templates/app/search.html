@@ -1,27 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
+{% load static %}
 
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
-    <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
-    
-    <title>{{ title }}</title>
-</head>
-<body>
-    <a href="http://127.0.0.1:8000/"><h1>QWE</h1></a>
-    <hr>
-    {% if search %}
-        {% for item in search %}
+{% block header %}
+<div class="grid_element header">
+  <a href="{% url 'home' %}"><img src="{% static 'logoo.png' %}" alt=""></a>
+  <div id="searchX2" class="grid_element search">
+    <form action="{% url 'search' %}", method="GET">
+        <input id="input2" class="serchX" type="text" placeholder="Введите название книги" name="q" value="">
+        <button type="submit" id="serchXbtn">Найти</button>
+    </form>
+  </div>
+</div>
+{% endblock header %}
+
+{% block content %}
+<div class="grid_element content">
+  {% if book_list %}
+    {% for item in book_list %}
+      <div class="product-card">
+          <div class="product-tumb">
             <img src="{{item.img_link}}" alt="">
-            <h2>{{item.shop}} | <a target="_blank" href="{{item.link}} ">{{item.title}}</a> | {{item.author}} | {{item.price}} Руб.</h2>
-            <hr>
-        {% endfor %}
-    {% else %}
-        <h1>Ничего не найдено</h1>
-    {% endif %}
-</body>
-</html>
+          </div>
+          <div class="product-details">
+            <span class="product-catagory">{{item.shop}}</span>
+            <h4><a target="_blank" href="{{item.link}}">{{item.title}}</a></h4>
+            <div class="product-bottom-details">
+              <div class="product-price">{{item.price}} Руб</div>
+            <button id="buyXbtn">Купить</button>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock content %}
+
+{% block pagination %}
+  {% include 'inc/pagination.html' %}
+{% endblock pagination %}

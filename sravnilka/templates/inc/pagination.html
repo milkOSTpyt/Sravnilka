@@ -1,0 +1,35 @@
+<div>
+    <div id="container">
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                {% if page_obj.number|add:'-3' > 1 %}
+                    <a class="page" href="?{{q}}page=1">first</a>
+                {% endif %}
+                {% if page_obj.number|add:'-3' >= 3 %}
+                        <a class="page" href="?{{q}}page={{ page_obj.previous_page_number|add:'-3' }}">
+                        <span class="pagination__link">• • •</span>
+                        </a>
+                {% endif %}
+            {% endif %}
+            {% if paginator.page_range|length > 1 %}
+                {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <span class="page active">{{ i }}</span>
+                    {% elif i > page_obj.number|add:'-4' and i < page_obj.number|add:'4' %}
+                        <a class="page" href="?{{q}}page={{ i }}">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if page_obj.has_next %}
+                {% if page_obj.number|add:'4' < page_obj.paginator.num_pages %}
+                    <a class="page" href="?{{q}}page={{ page_obj.next_page_number|add:'3' }}">
+                        <span class="pagination__link">• • •</span>
+                    </a>
+                {% endif %}
+                {% if page_obj.number|add:'3' < page_obj.paginator.num_pages %}
+                    <a class="page" href="?{{q}}page={{ page_obj.paginator.num_pages }}">Last</a>
+                {% endif %}
+            {% endif %}
+        <div>
+    </div>
+</div>
