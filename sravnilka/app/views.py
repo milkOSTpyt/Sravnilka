@@ -7,13 +7,13 @@ from django.db.models import Q
 
 
 class HomePage(View):
-    ''' Главная страница сайта с поисковым полем '''
+    """ Главная страница сайта с поисковым полем """
     def get(self, request):
         return render(request, 'app/index.html')
 
 
 class Search(ListView):
-    """Поиск книг"""
+    """ Поиск книг """
     paginate_by = 5
     template_name = 'app/search.html'
     context_object_name = 'book_list'

@@ -1,0 +1,24 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block title %} {{ flatpage.title }} {% endblock %}
+
+{% block header %}
+<div class="grid_element header">
+  <a href="{% url 'home' %}"><img src="{% static 'logoo.png' %}" alt=""></a>
+  <div id="searchX2" class="grid_element search">
+    <form action="{% url 'search' %}", method="GET">
+        <input id="input2" class="serchX" type="text" placeholder="Введите название книги" name="q" value="">
+        <button type="submit" id="serchXbtn">Найти</button>
+    </form>
+  </div>
+</div>
+{% endblock header %}
+
+{% block content %}
+<div style="text-align: center;" class="container">
+    <h2 style="color: #7B5648;">{{ flatpage.title }}</h2>
+    <br>
+    {{ flatpage.content }}
+</div>
+{% endblock %}

@@ -2,10 +2,13 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
+from django.contrib.flatpages import views
 
 urlpatterns = [
     path('', include('app.urls')),
     path('admin/', admin.site.urls),
+    path('about-us/', views.flatpage, {'url': '/about-us/'}, name='about'),
+    path('contacts/', views.flatpage, {'url': '/contacts/'}, name='contacts'),
 ]
 
 if settings.DEBUG:
