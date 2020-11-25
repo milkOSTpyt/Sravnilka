@@ -14,7 +14,7 @@ class HomePage(View):
 
 class Search(ListView):
     """ Поиск книг """
-    paginate_by = 5
+    paginate_by = 21
     template_name = 'app/search.html'
     context_object_name = 'book_list'
 

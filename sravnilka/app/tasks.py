@@ -1,3 +1,4 @@
+from django.db.utils import IntegrityError
 import asyncio
 import aiohttp
 from lxml import html
@@ -25,10 +26,12 @@ def parser(html_code, dict_xpath):
         if 'http' not in i:
             i = of_link + i
         try:
-            p = float(str('.'.join(re.findall('(\d+)', p.text))))
+            #Здесь мы избавляемся от лишних пробелов в цене, и оставляем только цифры для преобразовыввания цены в float
+            p=float(str('.'.join(re.findall('(\d+)',re.sub('[\s]','',p.text)))))
             Books.objects.get_or_create(shop=of_link, title=t.text, 
                                     author=a.text, link=l, img_link=i, price=p)
-        except ValueError:
+        except Exception as e:
+            print(f'{e} - {t.text} {l}')
             continue
 
 

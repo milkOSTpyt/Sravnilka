@@ -148,4 +148,7 @@ Q_CLUSTER = {
     'name': "sravnilka",
     'orm': "default",  # Use Django's ORM + database for broker
     'retry': 6000,
+    'label': 'Задачи',
+    'catch_up': False,
+
 }

@@ -27,10 +27,14 @@
           </div>
           <div class="product-details">
             <span class="product-catagory">{{item.shop}}</span>
-            <h4><a target="_blank" href="{{item.link}}">{{item.title}}</a></h4>
+            <div class="h4">
+              <h4><a target="_blank" href="{{item.link}}">{{item.title|truncatechars:30}}</a></h4>
+            </div>
             <div class="product-bottom-details">
               <div class="product-price">{{item.price}} Руб</div>
-            <button id="buyXbtn">Купить</button>
+            <form target="_blank" action="{{item.link}}">
+                <button id="buyXbtn">Купить</button>
+            </form>
           </div>
         </div>
       </div>
