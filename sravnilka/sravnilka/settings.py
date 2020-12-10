@@ -147,7 +147,7 @@ MEDIA_URL = '/media/'
 Q_CLUSTER = {
     'name': "sravnilka",
     'orm': "default",  # Use Django's ORM + database for broker
-    'retry': 6000,
+    'retry': 18000,
     'label': 'Задачи',
     'catch_up': False,
 

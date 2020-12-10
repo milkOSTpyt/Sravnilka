@@ -26,7 +26,15 @@
             <img src="{{item.img_link}}" alt="">
           </div>
           <div class="product-details">
-            <span class="product-catagory">{{item.shop}}</span>
+            {% if item.shop == "https://oz.by"%}
+              <span style="color: rgba(253, 131, 0, 0.650);" class="product-catagory">{{item.shop}}</span>
+            {% elif item.shop == "https://biblio.by"%}
+              <span style="color: rgba(7, 156, 202, 0.650);" class="product-catagory">{{item.shop}}</span>
+            {% elif item.shop == "https://booklover.by"%}
+              <span style="color: rgba(248, 73, 73, 0.65);" class="product-catagory">{{item.shop}}</span>
+            {% elif item.shop == "https://bestbooks.by"%}
+              <span style="color: rgba(35, 102, 9, 0.650);" class="product-catagory">{{item.shop}}</span>
+            {% endif %}
             <div class="h4">
               <h4><a target="_blank" href="{{item.link}}">{{item.title|truncatechars:30}}</a></h4>
             </div>
