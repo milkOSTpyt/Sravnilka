@@ -3,7 +3,7 @@ from fake_useragent import UserAgent
 import asyncio
 import aiohttp
 from lxml import html
-from .models import Books
+from .models import Book
 import re
 
 
@@ -30,7 +30,7 @@ def parser(url, html_code, dict_xpath):
             i = url + i
         try:
             p=float(str('.'.join(re.findall('(\d+)',re.sub('[\s]','',p.text)))))
-            Books.objects.get_or_create(shop=url, title=t.text, author=a.text, link=l, img_link=i, price=p)
+            Book.objects.get_or_create(shop=url, title=t.text, author=a.text, link=l, img_link=i, price=p)
         except Exception as e:
             print(f'{e} - {l}')
             continue
@@ -84,11 +84,11 @@ def start(data):
     """ Функция, которая запускается из Django админки(Django-q).Сюда 
     передается словарь с данными для парсинга. Так же функция удаляет старые данные из базы """
     for url, dict_xpath in data.items():
-        Books.objects.filter(shop=url).delete()
+        Book.objects.filter(shop=url).delete()
         loop = asyncio.get_event_loop()
         loop.run_until_complete(collect_tasks(url, dict_xpath))
 
 
 def www():
     """ Временная функция для удаления базы """
-    Books.objects.all().delete()
+    Book.objects.all().delete()

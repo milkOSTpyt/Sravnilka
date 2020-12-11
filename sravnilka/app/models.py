@@ -1,6 +1,6 @@
 from django.db import models
 
-class Books(models.Model):
+class Book(models.Model):
     ''' База книг '''
     shop = models.CharField('Магазин', max_length=100)
     title = models.CharField('Название книги', max_length=455)

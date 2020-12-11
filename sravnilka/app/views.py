@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from django.views.generic import ListView
 from django.core.paginator import Paginator
-from.models import Books
+from.models import Book
 from django.db.models import Q
 
 
@@ -20,7 +20,7 @@ class Search(ListView):
 
     def get_queryset(self):
         search = self.request.GET.get('q', '')
-        return Books.objects.filter(Q(title__icontains=search) | Q(
+        return Book.objects.filter(Q(title__icontains=search) | Q(
                                                       author__icontains=search))
 
     def get_context_data(self, *args, **kwargs):
