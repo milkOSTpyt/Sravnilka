@@ -1,9 +1,8 @@
+from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic.base import View
 from django.views.generic import ListView
-from django.core.paginator import Paginator
 from.models import Book
-from django.db.models import Q
 
 
 class HomePage(View):
@@ -21,7 +20,7 @@ class Search(ListView):
     def get_queryset(self):
         search = self.request.GET.get('q', '')
         return Book.objects.filter(Q(title__icontains=search) | Q(
-                                                      author__icontains=search))
+                                                    author__icontains=search))
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

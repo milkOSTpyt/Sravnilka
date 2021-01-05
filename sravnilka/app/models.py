@@ -1,7 +1,8 @@
 from django.db import models
 
+
 class Book(models.Model):
-    ''' База книг '''
+    """База книг"""
     shop = models.CharField('Магазин', max_length=100)
     title = models.CharField('Название книги', max_length=455)
     author = models.CharField('Автор', max_length=455, null=True, blank=True)
