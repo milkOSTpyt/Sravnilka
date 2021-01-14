@@ -4,12 +4,15 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from django.contrib.flatpages import views
 
+
 urlpatterns = [
     path('', include('app.urls')),
     path('admin/', admin.site.urls),
     path('about-us/', views.flatpage, {'url': '/about-us/'}, name='about'),
     path('contacts/', views.flatpage, {'url': '/contacts/'}, name='contacts'),
+    path('api/', include('api.urls')),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

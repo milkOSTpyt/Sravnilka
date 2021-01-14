@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 
-################################################################################
+###############################################################################
 
 # SECRET_KEY = os.environ.get("SECRET_KEY")
 SECRET_KEY = 'udxe2-wxp+)905g#=@-re6w@xwu_z$9xy_ip#5dtdv-kum-4yp'
@@ -19,7 +19,7 @@ DEBUG = True
 # ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 ALLOWED_HOSTS = []
 
-################################################################################
+###############################################################################
 
 
 # Application definition
@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'django_q',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'rest_framework',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -111,6 +113,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
 
 
 # Internationalization
