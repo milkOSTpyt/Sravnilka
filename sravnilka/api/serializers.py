@@ -6,3 +6,9 @@ class BookSerializer(ModelSerializer):
     class Meta:
         model = Book
         exclude = ('img_link', )
+
+
+class ShopSerializer(ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ('shop', )
