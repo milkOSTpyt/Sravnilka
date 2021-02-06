@@ -5,7 +5,7 @@ from .serializers import BookSerializer, ShopSerializer
 
 
 class BookListView(ListAPIView):
-    queryset = Book.objects.all()
+    queryset = Book.objects.all().order_by('price')
     serializer_class = BookSerializer
     search_fields = ['title', 'author']
     filter_backends = (SearchFilter,)
