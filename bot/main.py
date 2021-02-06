@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from requests_html import HTMLSession
 load_dotenv()
 
-bot = telebot.TeleBot(os.environ.get('TOKEN'))
+bot = telebot.TeleBot(os.environ.get('TELEGRAM_TOKEN'))
 
 markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=1)
 btn_shop = types.KeyboardButton('Магазины 🏪')

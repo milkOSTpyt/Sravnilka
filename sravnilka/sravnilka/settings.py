@@ -1,4 +1,6 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -7,20 +9,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
-###############################################################################
-
-# SECRET_KEY = os.environ.get("SECRET_KEY")
-SECRET_KEY = 'udxe2-wxp+)905g#=@-re6w@xwu_z$9xy_ip#5dtdv-kum-4yp'
-
-# DEBUG = int(os.environ.get("DEBUG", default=0))
 DEBUG = True
 
-# ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 ALLOWED_HOSTS = []
-
-###############################################################################
-
 
 # Application definition
 
@@ -73,25 +66,16 @@ WSGI_APPLICATION = 'sravnilka.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-""" DATABASES = {
-    'default': {
-        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
-        "USER": os.environ.get("SQL_USER", "user"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD", "postgres"),
-        "HOST": os.environ.get("SQL_HOST", "localhost"),
-        "PORT": os.environ.get("SQL_PORT", "5432"),
-    }
-} """
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'books',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('SQL_DATABASE', os.path.join(BASE_DIR,
+                                                            'db.sqlite3')),
+        'USER': os.environ.get('SQL_USER', 'user'),
+        'PASSWORD': os.environ.get('SQL_PASSWORD', 'postgres'),
+        'HOST': os.environ.get('SQL_HOST', 'localhost'),
+        'PORT': os.environ.get('SQL_PORT', '5432'),
     }
 }
 
@@ -140,7 +124,7 @@ SITE_ID = 1
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'app/static'),
@@ -150,10 +134,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-
 Q_CLUSTER = {
-    'name': "sravnilka",
-    'orm': "default",  # Use Django's ORM + database for broker
+    'name': 'sravnilka',
+    'orm': 'default',  # Use Django's ORM + database for broker
     'retry': 18000,
     'label': 'Задачи',
     'catch_up': False,
