@@ -53,5 +53,3 @@ pprint(resp(url))
   'shop': 'https://oz.by',
   'title': 'Япония. История и культура'}]
 ```
-
-проверка
