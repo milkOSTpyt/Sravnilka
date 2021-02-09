@@ -1,7 +1,6 @@
 import os
 import telebot
-from telebot import util
-from telebot import types
+from telebot import util, types
 from dotenv import load_dotenv
 from requests_html import HTMLSession
 load_dotenv()
@@ -14,7 +13,7 @@ btn_about = types.KeyboardButton('О нас 🕵🏻‍♂️')
 markup.add(btn_shop, btn_about)
 
 
-def resp(url):
+def get_resp(url):
     """Функция делает запрос на API и парсит json"""
     with HTMLSession() as session:
         list_json = session.get(url).json()['results']
@@ -24,7 +23,7 @@ def resp(url):
 def parse_data(msg):
     """Функция принимает сообщение пользователя и делает запрос на API,
     после чего возращает данные в виде строки, если они существуют в базе"""
-    data = resp('http://127.0.0.1:8000/api/?search=' + msg)
+    data = get_resp('http://127.0.0.1:8000/api/?search=' + msg)
     if data:
         string = ''
         for item in data:
@@ -49,7 +48,7 @@ def send_welcome(message):
 def search(message):
     """Ответ на сообщения пользователя"""
     if message.text == markup.keyboard[0][0]['text']:
-        bot.reply_to(message, '\n'.join(i['shop'] for i in resp(
+        bot.reply_to(message, '\n'.join(i['shop'] for i in get_resp(
                                           'http://127.0.0.1:8000/api/shops/')))
     elif message.text == markup.keyboard[0][1]['text']:
         bot.reply_to(message, 'С нами вы можете выгодно покупать любимые '

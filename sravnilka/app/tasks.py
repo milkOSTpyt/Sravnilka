@@ -13,8 +13,8 @@ list_errors = []
 
 
 def parser(url, html_code, dict_xpath):
-    """ С помщью библиотеки lxml мы получаем дом дерево и достаем оттуда наши 
-    данные. Далее записываем их в базу """
+    """ С помщью библиотеки lxml функция получает дом дерево и достает оттуда
+    данные. Далее записывает их в базу """
     dom_tree = html.fromstring(html_code)
     title = dom_tree.xpath(dict_xpath['title'])
     author = dom_tree.xpath(dict_xpath['author'])
@@ -39,8 +39,8 @@ def parser(url, html_code, dict_xpath):
 
 
 async def get_html(url, link, sem, dict_xpath):
-    """ Устанавливаем Semaphore. 
-    Получаем response и передаем html код функции parser """
+    """ Функция устанавливает Semaphore, получает response и передает html код
+    функции parser """
     headers = {'User-Agent': ua.random}
     async with sem:
         try:
@@ -68,10 +68,10 @@ async def error_links(url, sem, dict_xpath):
 
 
 async def collect_tasks(url, dict_xpath):
-    """ Здесь мы создаем список урлов для парсинга и закидываем наши задачи в 
-    gather. Так же настраиваем Semaphore для ограничения количества запросов.В
-    конце мы проверяем список урлов,которые небыли выполнены и закидываем их
-    еще раз в gather с помощью функции error_links """
+    """ Функция создает список урлов для парсинга и закидывает задачи в gather.
+    Так же настраивает Semaphore для ограничения количества запросов.В
+    конце функция проверяет список урлов,которые небыли выполнены и закидывает
+    их еще раз в gather с помощью функции error_links """
     urls = []
     for link, quantity in dict_xpath['pages'].items():
         for i in range(1, quantity + 1):
@@ -94,8 +94,3 @@ def start(data):
         Book.objects.filter(shop=url).delete()
         loop = asyncio.get_event_loop()
         loop.run_until_complete(collect_tasks(url, dict_xpath))
-
-
-def www():
-    """ Временная функция для удаления базы """
-    Book.objects.all().delete()
