@@ -5,7 +5,7 @@
 - TelegramBot
 - API
 
-![alt tag](https://i.ibb.co/3MFQ3Ws/Sravnilka-n.png)
+![alt tag](https://i.ibb.co/ZGqsBKx/Sravnilka.png)
 
 ## Веб-сайт
 
