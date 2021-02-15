@@ -4,20 +4,51 @@
 {% block title %} {{ flatpage.title }} {% endblock %}
 
 {% block header %}
-<div class="grid_element header">
-  <a href="{% url 'home' %}"><img src="{% static 'logoo.png' %}" alt=""></a>
-  <div id="searchX2" class="grid_element search">
-    <form action="{% url 'search' %}", method="GET">
-        <input id="input2" class="serchX" type="text" placeholder="Введите название книги" name="q" value="">
-        <button type="submit" id="serchXbtn">Найти</button>
-    </form>
-  </div>
+<div class="container_nav">
+  <nav>
+    <div id="nav_2" class="nav-wrapper #00695c teal darken-3">
+      <div class="nav_logo">
+        <a href="{% url 'home' %}" class="brand-logo">Sravnilka</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+
+      <form id="form-search" action="{% url 'search' %}" method="GET">
+          <div class="input-field">
+            <input id="search2" type="search" required name="q">
+            <button id="btn_search" type="submit"><i id="label_serch2" class="material-icons">search</i></button>
+          </div>
+        </form>
+
+      <div class="nav_list">
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <div class="menu_left">
+            <li><a href="#">Б/У</a></li>
+              <li><a href="#">Обмен</a></li>
+          </div>
+          <div class="menu_right">
+            <li><a href="#"><i id="icon_person" class="material-icons right">person_outline</i>Вход</a></li>
+          </div>
+          </ul>
+      </div>
+    </div>
+  </nav>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="sass.html">Войти</a></li>
+      <li><a href="badges.html">Б/У</a></li>
+      <li><a href="collapsible.html">Обмен</a></li>
+      <li><form>
+        <div class="input-field">
+          <input id="search_2" type="search" required>
+          <label class="label-icon" for="search"></label>
+        </div>
+      </form></li>
+    </ul>
 </div>
 {% endblock header %}
 
 {% block content %}
 <div style="text-align: center;" class="container">
-    <h2 style="color: #7B5648;">{{ flatpage.title }}</h2>
+    <h4 style="color: #00695c; font-family: 'Nunito', sans-serif;">{{ flatpage.title }}</h4>
     <br>
     {{ flatpage.content }}
 </div>

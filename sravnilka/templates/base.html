@@ -2,13 +2,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'style_project.css' %}">
-    <title>{% block title %} {% endblock %}</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %} {% endblock %}</title>
+    <script src="https://kit.fontawesome.com/f3286845b5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-<body>
-    <div class="grid">
+    <body>
+        <div class="wrapper">
+
+            <!--  Navbar-->
             {% block header %}
 
             {% endblock header %}
@@ -18,12 +24,13 @@
 
             {% endblock content %}
 
+            {% include 'inc/pagination.html' %}
 
-            {% block pagination %}
+            {% include 'inc/footer.html' %}
 
-            {% endblock pagination %}
-        {% include 'inc/footer.html' %}
-    </div>
-    <script src="https://use.fontawesome.com/c61d059362.js"></script>
-</body>
+        </div>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="{% static 'js/materialize.js' %}"></script>
+        <script src="{% static 'js/init.js' %}"></script>
+    </body>
 </html>

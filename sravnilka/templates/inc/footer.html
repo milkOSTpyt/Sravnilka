@@ -1,16 +1,18 @@
-<footer class="foot-bottom" class="footer-distributed">
-    <div class="footer-right">
-        <a href="#"><i class="fa fa-facebook"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-github"></i></a>
+<div class="container_foot">
+	<footer id="foot" class="page-footer">
+      <div class="foot_text">
+        <h5 class="color_text">Сравнилка книг</h5>
+        <p class="color_text">Чтение книг — не способ бегства от жизни, книги дают ключ к ее пониманию. Ключ к реальности.</p>
+      </div>
+      <div class="list_links">
+        <ul class="foot_links">
+          <li><a class="color_text" href="{% url 'home' %}">Главная</a></li>
+          <li><a class="color_text" href="{% url 'contacts' %}">Контакты</a></li>
+          <li><a class="color_text" href="{% url 'about' %}">О нас</a></li>
+        </ul>
+      </div>
+	</footer>
+	<div class="footer-copyright">
+        © 2021 Sravnilka
     </div>
-    <div class="footer-left">
-        <p class="footer-links">
-            <a class="link-1" href="{% url 'home' %}">Главная</a>
-            <a href="{% url 'about' %}">О нас</a>
-            <a href="{% url 'contacts' %}">Контакты</a>
-        </p>
-        <p>Qwe &copy; 2020</p>
-    </div>
-</footer>
+</div>
