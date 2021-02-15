@@ -9,7 +9,7 @@
 
 ## Веб-сайт
 
-![alt tag](https://i.ibb.co/4jMQFWk/Peek-2021-02-08-15-32.gif)
+![alt tag](https://i.ibb.co/zhQqQbX/Peek-2021-02-16-01-47.gif)
 
 ## TelegramBot + API
 
