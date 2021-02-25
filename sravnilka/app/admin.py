@@ -4,7 +4,6 @@ from .models import Book
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-
     list_display = ('pk', 'shop', 'title', 'author', 'price')
     list_display_links = ('pk', 'title',)
     search_fields = ('title', )
@@ -13,4 +12,5 @@ class BookAdmin(admin.ModelAdmin):
     save_on_top = True
 
 
-admin.site.site_header = 'Админка'
+admin.site.site_header = 'Админ-панель'
+admin.site.index_title = 'Sravnilka'

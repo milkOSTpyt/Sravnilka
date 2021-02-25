@@ -1,0 +1,44 @@
+<div class="container_nav">
+  <nav>
+    <div id="nav" class="nav-wrapper #00695c teal darken-3">
+    	<div class="nav_logo">
+    		<a href="{% url 'home' %}" class="brand-logo">Sravnilka</a>
+    		<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    	</div>
+    	<div class="nav_list">
+    		<ul id="nav-mobile" class="right hide-on-med-and-down">
+    			<div class="menu_left">
+    				<li><a href="#">Б/У</a></li>
+		        	<li><a href="#">Обмен</a></li>
+    			</div>
+    			<div class="menu_right">
+					{% if request.user.is_authenticated %}
+						<li><a href="#">{{user.username|title}}</a></li>
+						<li><a href="{% url 'logout' %}"><i id="icon_person" class="material-icons right">exit_to_app</i></a></li>
+					{% else %}
+						<li><a href="{% url 'register' %}">Регистрация</a></li>
+						<li><a href="{% url 'login' %}">Вход</a></li>
+					{% endif %}
+    			</div>
+      		</ul>
+    	</div>
+    </div>
+  </nav>
+    <ul class="sidenav" id="mobile-demo">
+      {% if request.user.is_authenticated %}
+          <li><a href="#">{{user.username|title}}</a></li>
+          <li><a href="{% url 'logout' %}">Выход</a></li>
+      {% else %}
+          <li><a href="{% url 'register' %}">Регистрация</a></li>
+          <li><a href="{% url 'login' %}">Вход</a></li>
+      {% endif %}
+      <li><a href="badges.html">Б/У</a></li>
+      <li><a href="collapsible.html">Обмен</a></li>
+      <li><form>
+        <div class="input-field">
+          <input id="search_2" type="search" required>
+          <label class="label-icon" for="search"></label>
+        </div>
+      </form></li>
+    </ul>
+</div>

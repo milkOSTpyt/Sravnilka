@@ -7,6 +7,7 @@ from django.contrib.flatpages import views
 
 urlpatterns = [
     path('', include('app.urls')),
+    path('', include('accounts.urls')),
     path('admin/', admin.site.urls),
     path('about-us/', views.flatpage, {'url': '/about-us/'}, name='about'),
     path('contacts/', views.flatpage, {'url': '/contacts/'}, name='contacts'),

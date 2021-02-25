@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'rest_framework',
     'api',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,15 @@ Q_CLUSTER = {
     'catch_up': False,
 
 }
+
+AUTH_USER_MODEL = 'accounts.User'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
